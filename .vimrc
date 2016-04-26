@@ -17,7 +17,8 @@ Plugin 'altercation/vim-colors-solarized'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-
+"to see the generated characted corresponding to a command, run 'sed -n l' in
+"terminal
 syntax enable
 set background=dark
 colorscheme delek 
