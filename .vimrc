@@ -29,7 +29,9 @@ set clipboard=unnamed
 set tabstop=2
 set shiftwidth=2
 set expandtab
-"move :help key-notationcurrent line above or below
+set showmatch  " Show matching brackets."
+set ruler      " show the line number on the bar"
+"move line above or below
 nnoremap ∆ :m .+1<CR>==
 nnoremap ˚ :m .-2<CR>==
 inoremap ∆ <Esc>:m .+1<CR>==gi
@@ -37,9 +39,12 @@ inoremap ˚ <Esc>:m .-2<CR>==gi
 vnoremap ∆ :m '>+1<CR>gv=gv
 vnoremap ˚ :m '<-2<CR>gv=gv"move current line above or below
 nnoremap ∆ :m .+1<CR>==
+"swap : with ;
 nnoremap ; :
 nnoremap : ;
 set noerrorbells "no annoying sound on errors
 set novisualbell
+hi Directory guifg=#FF0000 ctermfg=white
 "let g:airline_powerline_fonts = 1
 "let g:airline_theme = 'solarized'
+
