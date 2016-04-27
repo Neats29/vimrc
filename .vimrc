@@ -45,6 +45,4 @@ nnoremap : ;
 set noerrorbells "no annoying sound on errors
 set novisualbell
 hi Directory guifg=#FF0000 ctermfg=white
-"let g:airline_powerline_fonts = 1
-"let g:airline_theme = 'solarized'
 
