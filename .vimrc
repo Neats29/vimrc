@@ -14,6 +14,11 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
+" for snippets:
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -44,7 +49,8 @@ nnoremap ; :
 nnoremap : ;
 set noerrorbells "no annoying sound on errors
 set novisualbell
-hi Directory guifg=#FF0000 ctermfg=white
+"changes the color of NERDTree 
+hi Directory guifg=#FF0000 ctermfg=white 
 "let g:airline_powerline_fonts = 1
 "let g:airline_theme = 'solarized'
 
