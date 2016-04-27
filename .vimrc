@@ -21,7 +21,7 @@ filetype plugin indent on    " required
 "terminal
 syntax enable
 set background=dark
-colorscheme delek 
+colorscheme solarized 
 set backspace=indent,eol,indent
 "set rnu
 set number
