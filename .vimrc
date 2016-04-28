@@ -14,12 +14,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
-" for snippets:
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdcommenter'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -27,7 +22,7 @@ filetype plugin indent on    " required
 "terminal
 syntax enable
 set background=dark
-colorscheme delek 
+colorscheme solarized 
 set backspace=indent,eol,indent
 "set rnu
 set number
@@ -48,15 +43,23 @@ nnoremap ∆ :m .+1<CR>==
 "swap : with ;
 nnoremap ; :
 nnoremap : ;
-nnoremap "*y yy 
-vnoremap "*y yy
-" remap :w save to space button in normal mode
-nnoremap <space> :w<CR> 
+"case insensitive search by default
+set ic 
 set noerrorbells "no annoying sound on errors
 set novisualbell
-"changes the color of NERDTree 
-hi Directory guifg=#FF0000 ctermfg=white 
-"let g:airline_powerline_fonts = 1
-"let g:airline_theme = 'solarized'
-au BufReadPost *.hbs set syntax=html
-
+hi Directory guifg=#FF0000 ctermfg=white
+"when entering a { it will close it, enter a new line and put the cursor
+"withcorrect indentation
+set autoindent
+set cindent
+inoremap { {<CR>}<up><end><CR>
+"auto-close shit
+ino " ""<left>
+ino ' ''<left>
+ino ( ()<left>
+ino [ []<left>
+"required by nerdcommenter
+filetype plugin on 
+"remap \cc to alt+/ to comment code
+nnoremap ,c :call NERDComment(0,"toggle")<CR>
+vnoremap ,c :call NERDComment(0,"toggle")<CR>
