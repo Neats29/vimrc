@@ -19,6 +19,7 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
+Plugin 'kien/ctrlp.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -47,10 +48,15 @@ nnoremap ∆ :m .+1<CR>==
 "swap : with ;
 nnoremap ; :
 nnoremap : ;
+nnoremap "*y yy 
+vnoremap "*y yy
+" remap :w save to space button in normal mode
+nnoremap <space> :w<CR> 
 set noerrorbells "no annoying sound on errors
 set novisualbell
 "changes the color of NERDTree 
 hi Directory guifg=#FF0000 ctermfg=white 
 "let g:airline_powerline_fonts = 1
 "let g:airline_theme = 'solarized'
+au BufReadPost *.hbs set syntax=html
 
