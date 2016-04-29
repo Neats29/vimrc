@@ -27,7 +27,7 @@ filetype plugin indent on    " required
 "terminal
 syntax enable
 set background=dark
-colorscheme delek 
+colorscheme solarized 
 set backspace=indent,eol,indent
 "set rnu
 set number
@@ -37,7 +37,7 @@ set shiftwidth=2
 set expandtab
 set showmatch  " Show matching brackets."
 set ruler      " show the line number on the bar"
-"move line above or below
+"move line above or below altj and alt-k
 nnoremap ∆ :m .+1<CR>==
 nnoremap ˚ :m .-2<CR>==
 inoremap ∆ <Esc>:m .+1<CR>==gi
@@ -48,10 +48,13 @@ nnoremap ∆ :m .+1<CR>==
 "swap : with ;
 nnoremap ; :
 nnoremap : ;
+"copy to clip board with yy
 nnoremap "*y yy 
 vnoremap "*y yy
 " remap :w save to space button in normal mode
 nnoremap <space> :w<CR> 
+" select All using alt-a
+"nnoremap å ggVG
 set noerrorbells "no annoying sound on errors
 set novisualbell
 "changes the color of NERDTree 
