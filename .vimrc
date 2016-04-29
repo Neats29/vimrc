@@ -65,3 +65,16 @@ filetype plugin on
 "remap \cc to alt+/ to comment code
 nnoremap ,c :call NERDComment(0,"toggle")<CR>
 vnoremap ,c :call NERDComment(0,"toggle")<CR>
+"give handlebars html syntax highlighting
+au BufReadPost *.hbs set syntax=html
+"F1 to toggle between pasting with correct indentation when in inset mode
+"set pastetoggle=<F1>
+"paste with correct indentation when in insert mode
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
