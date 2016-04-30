@@ -8,13 +8,15 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Keep Plugin commands between vundle#begin/end.
-Plugin 'rking/ag.vim'
+"Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'mattn/emmet-vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -48,8 +50,6 @@ nnoremap "*y yy
 vnoremap "*y yy
 " remap :w save to space button in normal mode
 nnoremap <space> :w<CR> 
-" select All using alt-a
-"nnoremap å ggVG
 "case insensitive search by default
 set ic 
 set noerrorbells "no annoying sound on errors
@@ -62,9 +62,16 @@ set cindent
 inoremap { {<CR>}<up><end><CR>
 "required by nerdcommenter
 filetype plugin on 
-"remap \cc to alt+/ to comment code
-nnoremap ,c :call NERDComment(0,"toggle")<CR>
-vnoremap ,c :call NERDComment(0,"toggle")<CR>
+
+let mapleader = ","
+"remap \cc to ,l to comment code
+nnoremap <Leader>l :call NERDComment(0<Leader>"toggle")<CR>
+vnoremap <Leader>l :call NERDComment(0<Leader>"toggle")<CR>
+"change leader fro \ to ,
+nnoremap ,o :CtrlP<CR>
+" select All using leader-a
+nmap <Leader>a ggVG
+
 "give handlebars html syntax highlighting
 au BufReadPost *.hbs set syntax=html
 "F1 to toggle between pasting with correct indentation when in inset mode
@@ -78,3 +85,18 @@ function! XTermPasteBegin()
   set paste
   return ""
 endfunction
+"let g:ctrlp_map = '<c-p>'
+"let g:ctrlp_cmd = 'CtrlP'
+"no arrow keys in normal, insert + visual
+no <down> <Nop>
+no <left> <Nop>
+no <right> <Nop>
+no <up> <Nop>
+ino <down> <Nop>
+ino <left> <Nop>
+ino <right> <Nop>
+ino <up> <Nop>
+vno <down> <Nop>
+vno <left> <Nop>
+vno <right> <Nop>
+vno <up> <Nop>
