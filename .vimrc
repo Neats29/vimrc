@@ -35,9 +35,9 @@ set clipboard=unnamed
 set tabstop=2
 set shiftwidth=2
 set expandtab
-set showmatch  " Show matching brackets."
+set showmatch  " Show matching brackets.
 set autoread   " update files when switching to different git branches
-set ruler      " show the line number on the bar"
+set ruler      " show the line number on the bar
 "set showcmd   " display incomplete commands
 "move line above or below altj and alt-k
 nnoremap ∆ :m .+1<CR>==
@@ -53,10 +53,8 @@ nnoremap : ;
 "copy to clip board with yy
 nnoremap "*y yy 
 vnoremap "*y yy
-" remap :w save to space button in normal mode
-nnoremap <space> :w<CR> 
-"case insensitive search by default
-set ic 
+nnoremap <space> :w<CR>      " remap :w save to space button in normal mode
+set ic                       "case insensitive search by default
 set noerrorbells "no annoying sound on errors
 set novisualbell
 hi Directory guifg=#FF0000 ctermfg=white
@@ -67,8 +65,7 @@ set autoindent
 set cindent
 inoremap { {<CR>}<up><end><CR>
 
-"no swap file creation
-set noswapfile
+set noswapfile        "no swap file creation
 
 let mapleader = ","
 "remap \cc to ,l to comment code
@@ -112,3 +109,4 @@ vno <left> <Nop>
 vno <right> <Nop>
 vno <up> <Nop>
 
+let g:user_emmet_leader_key='<C-Z>'   "change Emment command to ctrl-z
