@@ -8,11 +8,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Keep Plugin commands between vundle#begin/end.
-"Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdtree'
-"Plugin 'terryma/vim-multiple-cursors'
-"Plugin 'vim-airline/vim-airline'
-"Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -50,20 +46,16 @@ nnoremap ∆ :m .+1<CR>==
 "swap : with ;
 nnoremap ; :
 nnoremap : ;
-"copy to clip board with yy
+"copy to clip board with yy and paste with p
 nnoremap "*y yy 
 vnoremap "*y yy
+nnoremap "*p p
+nnoremap "*p p
 nnoremap <space> :w<CR>      " remap :w save to space button in normal mode
 set ic                       "case insensitive search by default
 set noerrorbells "no annoying sound on errors
 set novisualbell
 hi Directory guifg=#FF0000 ctermfg=white
-
-"when entering a { it will close it, enter a new line and put the cursor
-"withcorrect indentation
-set autoindent
-set cindent
-inoremap { {<CR>}<up><end><CR>
 
 set noswapfile        "no swap file creation
 
@@ -73,7 +65,7 @@ nnoremap <Leader>l :call NERDComment(0<Leader>"toggle")<CR>
 vnoremap <Leader>l :call NERDComment(0<Leader>"toggle")<CR>
 nnoremap ,o :CtrlP<CR>
 " select All using leader-a
-nmap <Leader>a ggVG
+nnoremap <Leader>a ggVG
 
 "give handlebars html syntax highlighting
 au BufReadPost *.hbs set syntax=html
@@ -110,3 +102,16 @@ vno <right> <Nop>
 vno <up> <Nop>
 
 let g:user_emmet_leader_key='<C-Z>'   "change Emment command to ctrl-z
+
+iabbr func function
+
+ino " ""<left>
+ino ' ''<left>
+ino ( ()<left>
+ino [ []<left>
+"when entering a { it will close it, enter a new line and put the cursor
+"withcorrect indentation
+set autoindent
+set cindent
+inoremap { {<CR>}<up><end><CR>
+
