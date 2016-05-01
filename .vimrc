@@ -36,6 +36,7 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set showmatch  " Show matching brackets."
+set autoread   " update files when switching to different git branches
 set ruler      " show the line number on the bar"
 "set showcmd   " display incomplete commands
 "move line above or below altj and alt-k
@@ -73,7 +74,6 @@ let mapleader = ","
 "remap \cc to ,l to comment code
 nnoremap <Leader>l :call NERDComment(0<Leader>"toggle")<CR>
 vnoremap <Leader>l :call NERDComment(0<Leader>"toggle")<CR>
-"change leader fro \ to ,
 nnoremap ,o :CtrlP<CR>
 " select All using leader-a
 nmap <Leader>a ggVG
