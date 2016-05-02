@@ -9,11 +9,11 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Keep Plugin commands between vundle#begin/end.
 Plugin 'scrooloose/nerdtree'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/syntastic' "linter
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
-Plugin 'scrooloose/syntastic'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -103,6 +103,7 @@ vno <up> <Nop>
 
 let g:user_emmet_leader_key='<C-Z>'   "change Emment command to ctrl-z
 
+" when I type func turn it into function
 iabbr func function
 
 ino " ""<left>
