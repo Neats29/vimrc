@@ -14,6 +14,7 @@ Plugin 'scrooloose/syntastic' "linter
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
+Plugin 'easymotion/vim-easymotion'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -24,7 +25,7 @@ filetype plugin on           "required by nerdcommenter
 syntax enable
 set background=dark
 colorscheme solarized 
-set backspace=indent,eol,indent
+set backspace=indent,eol,start
 "set rnu
 set number
 set clipboard=unnamed
@@ -66,6 +67,7 @@ vnoremap <Leader>l :call NERDComment(0<Leader>"toggle")<CR>
 nnoremap ,o :CtrlP<CR>
 " select All using leader-a
 nnoremap <Leader>a ggVG
+map <Leader> <Plug>(easymotion-prefix)
 
 "give handlebars html syntax highlighting
 au BufReadPost *.hbs set syntax=html
