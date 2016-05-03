@@ -110,6 +110,7 @@ let g:user_emmet_leader_key='<C-Z>'   "change Emment command to ctrl-z
 
 " when I type func turn it into function
 iabbr func function
+iabbr conso console.log("
 
 ino " ""<left>
 ino ' ''<left>
