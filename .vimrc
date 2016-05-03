@@ -32,6 +32,9 @@ set clipboard=unnamed
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set hlsearch
+" <Ctrl-l> redraws the screen and removes any search highlighting.
+nnoremap <silent> <C-l> :nohl<CR><C-l> 
 set showmatch  " Show matching brackets.
 set autoread   " update files when switching to different git branches
 set ruler      " show the line number on the bar
