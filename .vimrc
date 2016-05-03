@@ -26,8 +26,8 @@ syntax enable
 set background=dark
 colorscheme solarized 
 set backspace=indent,eol,start
-"set rnu
 set number
+set relativenumber
 set clipboard=unnamed
 set tabstop=2
 set shiftwidth=2
@@ -117,4 +117,7 @@ ino [ []<left>
 set autoindent
 set cindent
 inoremap { {<CR>}<up><end><CR>
+
+" search and replace a word under cursor
+nnoremap <Leader>r :%s/<C-r><C-w>/<C-r><C-w>/gc<C-f>$F/i
 
