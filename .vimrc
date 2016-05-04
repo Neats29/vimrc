@@ -32,6 +32,9 @@ set clipboard=unnamed
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set hlsearch
+" <Ctrl-l> redraws the screen and removes any search highlighting.
+nnoremap <silent> <C-l> :nohl<CR><C-l> 
 set showmatch  " Show matching brackets.
 set autoread   " update files when switching to different git branches
 set ruler      " show the line number on the bar
@@ -107,6 +110,7 @@ let g:user_emmet_leader_key='<C-Z>'   "change Emment command to ctrl-z
 
 " when I type func turn it into function
 iabbr func function
+iabbr conso console.log("
 
 ino " ""<left>
 ino ' ''<left>
@@ -117,4 +121,7 @@ ino [ []<left>
 set autoindent
 set cindent
 inoremap { {<CR>}<up><end><CR>
+
+" search and replace a word under cursor
+nnoremap <Leader>r :%s/<C-r><C-w>/<C-r><C-w>/gc<C-f>$F/i
 
