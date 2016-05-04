@@ -26,7 +26,7 @@ syntax enable
 set background=dark
 colorscheme solarized 
 set backspace=indent,eol,start
-"set rnu
+set rnu
 set number
 set clipboard=unnamed
 set tabstop=2
