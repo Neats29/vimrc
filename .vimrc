@@ -15,6 +15,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'gregsexton/MatchTag' 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
