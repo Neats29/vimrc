@@ -72,6 +72,8 @@ nnoremap ,o :CtrlP<CR>
 " select All using leader-a
 nnoremap <Leader>a ggVG
 map <Leader> <Plug>(easymotion-prefix)
+nnoremap <Leader>p "0p
+vnoremap <Leader>p "0p
 
 "give handlebars html syntax highlighting
 au BufReadPost *.hbs set syntax=html
