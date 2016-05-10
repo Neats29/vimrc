@@ -41,7 +41,6 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 set showmatch  " Show matching brackets.
 set autoread   " update files when switching to different git branches
 set ruler      " show the line number on the bar
-"set showcmd   " display incomplete commands
 autocmd vimenter * NERDTree
 "move line above or below altj and alt-k
 nnoremap ∆ :m .+1<CR>==
@@ -80,7 +79,7 @@ vnoremap <Leader>p "0p
 
 "give handlebars html syntax highlighting
 au BufReadPost *.hbs set syntax=html
-
+au BufNewFile,BufRead *.xml,*.hbs set ft=html "let vim assume hbs filetype is html
 " By default, vim thinks .md is Modula-2.
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " Without this, vim breaks in the middle of words when wrapping
