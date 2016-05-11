@@ -15,6 +15,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'honza/vim-snippets'
 Plugin 'gregsexton/MatchTag' 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -35,6 +36,7 @@ set shiftwidth=2
 set laststatus=2      " Always display the statusline in all windows
 set expandtab
 set hlsearch
+set wmh=0
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l> 
 set showmatch  " Show matching brackets.
@@ -46,6 +48,7 @@ au FocusGained,BufEnter * :silent! !
 
 set ruler      " show the line number on the bar
 "set showcmd   " display incomplete commands
+autocmd vimenter * NERDTree
 "move line above or below altj and alt-k
 nnoremap ∆ :m .+1<CR>==
 nnoremap ˚ :m .-2<CR>==
