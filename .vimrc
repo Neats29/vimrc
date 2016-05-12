@@ -33,6 +33,7 @@ set number
 set clipboard=unnamed
 set tabstop=2
 set shiftwidth=2
+set laststatus=2      " Always display the statusline in all windows
 set expandtab
 set hlsearch
 set wmh=0
@@ -40,6 +41,11 @@ set wmh=0
 nnoremap <silent> <C-l> :nohl<CR><C-l> 
 set showmatch  " Show matching brackets.
 set autoread   " update files when switching to different git branches
+" Save whenever switching windows or leaving vim. This is useful when running
+au FocusLost,WinLeave * :silent! wa
+" Trigger autoread when changing buffers or coming back to vim.
+au FocusGained,BufEnter * :silent! !
+
 set ruler      " show the line number on the bar
 autocmd vimenter * NERDTree
 "move line above or below altj and alt-k
