@@ -17,6 +17,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'honza/vim-snippets'
 Plugin 'gregsexton/MatchTag' 
+Plugin 'editorconfig/editorconfig-vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -33,7 +34,6 @@ set number
 set clipboard=unnamed
 set tabstop=2
 set shiftwidth=2
-set laststatus=2      " Always display the statusline in all windows
 set expandtab
 set hlsearch
 set wmh=0
@@ -41,11 +41,6 @@ set wmh=0
 nnoremap <silent> <C-l> :nohl<CR><C-l> 
 set showmatch  " Show matching brackets.
 set autoread   " update files when switching to different git branches
-" Save whenever switching windows or leaving vim. This is useful when running
-au FocusLost,WinLeave * :silent! wa
-" Trigger autoread when changing buffers or coming back to vim.
-au FocusGained,BufEnter * :silent! !
-
 set ruler      " show the line number on the bar
 autocmd vimenter * NERDTree
 "move line above or below altj and alt-k
@@ -72,6 +67,7 @@ hi Directory guifg=#FF0000 ctermfg=white
 
 set noswapfile        "no swap file creation
 
+"--------------------Leader-----------------------------------"
 let mapleader = ","
 "remap \cc to ,l to comment code
 nnoremap <Leader>l :call NERDComment(0<Leader>"toggle")<CR>
@@ -83,6 +79,28 @@ map <Leader> <Plug>(easymotion-prefix)
 nnoremap <Leader>p "0p
 vnoremap <Leader>p "0p
 
+" search and replace a word under cursor
+nnoremap <Leader>r :%s/<C-r><C-w>/<C-r><C-w>/gc<C-f>$F/i
+
+"syn clear Repeat
+"nnoremap <Leader>z syn clear Repeat | g/^\(.*\)\n\ze\%(.*\n\)*\1$/exe 'syn match Repeat "^' . escape(getline('.'), '".\^$*[]') . '$"' | nohlsearch
+
+function! NumberToggle()
+  if(&relativenumber == 1 && &number == 1)
+    set number
+    set norelativenumber
+  elseif (&number == 1 && &relativenumber == 0)
+    set norelativenumber
+    set nonumber
+  else
+    set number
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <Leader>n :call NumberToggle()<CR>
+"-----------------End of Leader declarations----------------------------"
+
 "give handlebars html syntax highlighting
 au BufReadPost *.hbs set syntax=html
 au BufNewFile,BufRead *.xml,*.hbs set ft=html "let vim assume hbs filetype is html
@@ -90,6 +108,10 @@ au BufNewFile,BufRead *.xml,*.hbs set ft=html "let vim assume hbs filetype is ht
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " Without this, vim breaks in the middle of words when wrapping
 autocmd FileType markdown setlocal nolist wrap lbr
+
+"Autoread when file is edtited elsewhere
+au FocusGained,BufEnter * :silent! !
+au FocusLost,WinLeave * :silent! w
 
 "paste with correct indentation when in insert mode
 let &t_SI .= "\<Esc>[?2004h"
@@ -133,6 +155,16 @@ set autoindent
 set cindent
 inoremap { {<CR>}<up><end><CR>
 
-" search and replace a word under cursor
-nnoremap <Leader>r :%s/<C-r><C-w>/<C-r><C-w>/gc<C-f>$F/i
+" Put plugins and dictionaries in this dir
+let vimDir = '$HOME/.vim'
+let &runtimepath.=','.vimDir
 
+" Keep undo history across sessions by storing it in a file
+if has('persistent_undo')
+    let myUndoDir = expand(vimDir . '/undodir')
+    " Create dirs
+    call system('mkdir ' . vimDir)
+    call system('mkdir ' . myUndoDir)
+    let &undodir = myUndoDir
+    set undofile
+endif
