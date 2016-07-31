@@ -14,7 +14,7 @@ Plugin 'scrooloose/syntastic' "linter
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
-Plugin 'easymotion/vim-easymotion'
+"Plugin 'easymotion/vim-easymotion'
 Plugin 'honza/vim-snippets'
 Plugin 'gregsexton/MatchTag' 
 Plugin 'editorconfig/editorconfig-vim'
@@ -37,6 +37,7 @@ set shiftwidth=2
 set expandtab
 set hlsearch
 set wmh=0
+set shortmess=at
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l> 
 set showmatch  " Show matching brackets.
@@ -81,6 +82,8 @@ vnoremap <Leader>p "0p
 
 " search and replace a word under cursor
 nnoremap <Leader>r :%s/<C-r><C-w>/<C-r><C-w>/gc<C-f>$F/i
+nnoremap <Leader>gs :!git status<CR>
+nnoremap <Leader>t :NERDTreeToggle<CR>
 
 "syn clear Repeat
 "nnoremap <Leader>z syn clear Repeat | g/^\(.*\)\n\ze\%(.*\n\)*\1$/exe 'syn match Repeat "^' . escape(getline('.'), '".\^$*[]') . '$"' | nohlsearch
