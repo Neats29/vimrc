@@ -18,6 +18,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'honza/vim-snippets'
 Plugin 'gregsexton/MatchTag' 
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'vim-scripts/auto_autoread.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -43,6 +44,7 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 set showmatch  " Show matching brackets.
 set autoread   " update files when switching to different git branches
 set ruler      " show the line number on the bar
+set t_Co=256
 autocmd vimenter * NERDTree
 "move line above or below altj and alt-k
 nnoremap ∆ :m .+1<CR>==
@@ -61,6 +63,7 @@ vnoremap "*y yy
 nnoremap "*p p
 nnoremap "*p p
 nnoremap <space> :w<CR>      " remap :w save to space button in normal mode
+nnoremap <Tab> <c-w>w        " remap switching between panes from ctrl-ww to tab
 set ic                       "case insensitive search by default
 set noerrorbells "no annoying sound on errors
 set novisualbell
@@ -129,10 +132,6 @@ endfunction
 "let g:ctrlp_map = '<c-p>'
 "let g:ctrlp_cmd = 'CtrlP'
 "no arrow keys in normal, insert + visual
-no <down> <Nop>
-no <left> <Nop>
-no <right> <Nop>
-no <up> <Nop>
 ino <down> <Nop>
 ino <left> <Nop>
 ino <right> <Nop>
@@ -141,6 +140,12 @@ vno <down> <Nop>
 vno <left> <Nop>
 vno <right> <Nop>
 vno <up> <Nop>
+"remap arrow key to resize split window
+nnoremap <left> <C-w><
+nnoremap <right> <C-w>>
+nnoremap <up> <C-w>+
+nnoremap <down> <C-w>-
+
 
 let g:user_emmet_leader_key='<C-Z>'   "change Emment command to ctrl-z
 
