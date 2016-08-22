@@ -39,20 +39,22 @@ set expandtab
 set hlsearch
 set wmh=0
 set shortmess=at
+set cursorline
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l> 
 set showmatch  " Show matching brackets.
 set autoread   " update files when switching to different git branches
 set ruler      " show the line number on the bar
 set t_Co=256
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
 "move line above or below altj and alt-k
 nnoremap ∆ :m .+1<CR>==
 nnoremap ˚ :m .-2<CR>==
 inoremap ∆ <Esc>:m .+1<CR>==gi
 inoremap ˚ <Esc>:m .-2<CR>==gi
 vnoremap ∆ :m '>+1<CR>gv=gv
-vnoremap ˚ :m '<-2<CR>gv=gv "move current line above or below
+"move current line above or below
+vnoremap ˚ :m '<-2<CR>gv=gv
 nnoremap ∆ :m .+1<CR>==
 "swap : with ;
 nnoremap ; :
@@ -62,8 +64,10 @@ nnoremap "*y yy
 vnoremap "*y yy
 nnoremap "*p p
 nnoremap "*p p
-nnoremap <space> :w<CR>      " remap :w save to space button in normal mode
-nnoremap <Tab> <c-w>w        " remap switching between panes from ctrl-ww to tab
+" remap :update (save) to space button in normal mode
+noremap <space> :update<CR>
+" remap switching between panes from ctrl-ww to tab
+nnoremap <Tab> <c-w>w
 set ic                       "case insensitive search by default
 set noerrorbells "no annoying sound on errors
 set novisualbell
@@ -147,11 +151,14 @@ nnoremap <up> <C-w>+
 nnoremap <down> <C-w>-
 
 
-let g:user_emmet_leader_key='<C-Z>'   "change Emment command to ctrl-z
+"let g:user_emmet_leader_key='<C-Z>'   "change Emment command to ctrl-z
+nnoremap <S-Tab> <c-y>,
 
-" when I type func turn it into function
-iabbr func function
-iabbr conso console.log("
+set wildignore+=*/node_modules/*  "ignore node_modules folder in fuzzy finder
+
+ "when I type func turn it into function
+"iabbr func function
+"iabbr conso console.log("
 
 ino " ""<left>
 ino ' ''<left>
