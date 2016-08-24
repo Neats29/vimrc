@@ -44,6 +44,8 @@ set hlsearch
 set wmh=0
 set shortmess=at
 set cursorline
+"wrap with correct indentation and only break on whitespace
+set nolist wrap breakindent breakat&vim
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l> 
 " Show matching brackets.
