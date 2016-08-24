@@ -24,6 +24,10 @@ filetype plugin indent on    " required
 
 filetype plugin on           "required by nerdcommenter
 
+" Put plugins and dictionaries in this dir
+let vimDir = '$HOME/.vim'
+let &runtimepath.=','.vimDir
+
 "to see the generated characters corresponding to a command, run 'sed -n l' in
 "terminal
 syntax enable
@@ -42,9 +46,12 @@ set shortmess=at
 set cursorline
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l> 
-set showmatch  " Show matching brackets.
-set autoread   " update files when switching to different git branches
-set ruler      " show the line number on the bar
+" Show matching brackets.
+set showmatch 
+" update files when switching to different git branches
+set autoread 
+" show the line number on the bar
+set ruler 
 set t_Co=256
 "autocmd vimenter * NERDTree
 "move line above or below altj and alt-k
@@ -69,7 +76,8 @@ noremap <space> :update<CR>
 " remap switching between panes from ctrl-ww to tab
 nnoremap <Tab> <c-w>w
 set ic                       "case insensitive search by default
-set noerrorbells "no annoying sound on errors
+"no annoying sound on errors
+set noerrorbells 
 set novisualbell
 hi Directory guifg=#FF0000 ctermfg=white
 
@@ -89,11 +97,7 @@ vnoremap <Leader>p "0p
 
 " search and replace a word under cursor
 nnoremap <Leader>r :%s/<C-r><C-w>/<C-r><C-w>/gc<C-f>$F/i
-nnoremap <Leader>gs :!git status<CR>
 nnoremap <Leader>t :NERDTreeToggle<CR>
-
-"syn clear Repeat
-"nnoremap <Leader>z syn clear Repeat | g/^\(.*\)\n\ze\%(.*\n\)*\1$/exe 'syn match Repeat "^' . escape(getline('.'), '".\^$*[]') . '$"' | nohlsearch
 
 function! NumberToggle()
   if(&relativenumber == 1 && &number == 1)
@@ -109,6 +113,7 @@ function! NumberToggle()
 endfunc
 
 nnoremap <Leader>n :call NumberToggle()<CR>
+nnoremap <Leader>c <Insert>console.log();<esc><left><Insert>
 "-----------------End of Leader declarations----------------------------"
 
 "give handlebars html syntax highlighting
@@ -152,11 +157,11 @@ nnoremap <down> <C-w>-
 
 
 "let g:user_emmet_leader_key='<C-Z>'   "change Emment command to ctrl-z
-nnoremap <S-Tab> <c-y>,
+inoremap <S-Tab> <c-y>,
 
 set wildignore+=*/node_modules/*  "ignore node_modules folder in fuzzy finder
 
- "when I type func turn it into function
+"when I type func turn it into function
 "iabbr func function
 "iabbr conso console.log("
 
@@ -170,9 +175,6 @@ set autoindent
 set cindent
 inoremap { {<CR>}<up><end><CR>
 
-" Put plugins and dictionaries in this dir
-let vimDir = '$HOME/.vim'
-let &runtimepath.=','.vimDir
 
 " Keep undo history across sessions by storing it in a file
 if has('persistent_undo')
