@@ -14,11 +14,8 @@ Plugin 'scrooloose/syntastic' "linter
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
-"Plugin 'easymotion/vim-easymotion'
-Plugin 'honza/vim-snippets'
 Plugin 'gregsexton/MatchTag' 
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'vim-scripts/auto_autoread.vim'
+"Plugin 'editorconfig/editorconfig-vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -45,7 +42,7 @@ set wmh=0
 set shortmess=at
 set cursorline
 "wrap with correct indentation and only break on whitespace
-set nolist wrap breakindent breakat&vim
+set nolist wrap linebreak breakindent breakat&vim
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l> 
 " Show matching brackets.
@@ -73,6 +70,10 @@ nnoremap "*y yy
 vnoremap "*y yy
 nnoremap "*p p
 nnoremap "*p p
+"go down to next row when wrap is on
+nnoremap j gj
+nnoremap k gk
+
 " remap :update (save) to space button in normal mode
 noremap <space> :update<CR>
 " remap switching between panes from ctrl-ww to tab
