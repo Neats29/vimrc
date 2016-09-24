@@ -36,7 +36,7 @@ set number
 set clipboard=unnamed
 set tabstop=2
 set shiftwidth=2
-set expandtab
+set noexpandtab
 set hlsearch
 set wmh=0
 set shortmess=at
@@ -101,6 +101,8 @@ vnoremap <Leader>p "0p
 " search and replace a word under cursor
 nnoremap <Leader>r :%s/<C-r><C-w>/<C-r><C-w>/gc<C-f>$F/i
 nnoremap <Leader>t :NERDTreeToggle<CR>
+" search and change a word then change a given number occurences. eg: 5,q
+nnoremap <Leader>q @='n. '<CR>
 
 function! NumberToggle()
   if(&relativenumber == 1 && &number == 1)
@@ -120,7 +122,8 @@ nnoremap <Leader>c <Insert>console.log();<esc><left><Insert>
 "-----------------End of Leader declarations----------------------------"
 
 "give handlebars html syntax highlighting
-au BufReadPost *.hbs set syntax=html
+au BufReadPost *.hbs  set syntax=html
+au BufReadPost *.mustache set syntax=html
 au BufNewFile,BufRead *.xml,*.hbs set ft=html "let vim assume hbs filetype is html
 " By default, vim thinks .md is Modula-2.
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
@@ -172,12 +175,13 @@ ino " ""<left>
 ino ' ''<left>
 ino ( ()<left>
 ino [ []<left>
+ino { {}<left>
 "when entering a { it will close it, enter a new line and put the cursor
+"inoremap { {<CR>}<up><end><CR>
+
 "withcorrect indentation
 set autoindent
 set cindent
-inoremap { {<CR>}<up><end><CR>
-
 
 " Keep undo history across sessions by storing it in a file
 if has('persistent_undo')
