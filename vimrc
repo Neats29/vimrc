@@ -15,6 +15,8 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'gregsexton/MatchTag' 
+Plugin 'fatih/vim-go'
+Plugin 'airblade/vim-gitgutter'
 "Plugin 'editorconfig/editorconfig-vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -101,7 +103,8 @@ vnoremap <Leader>p "0p
 " search and replace a word under cursor
 nnoremap <Leader>r :%s/<C-r><C-w>/<C-r><C-w>/gc<C-f>$F/i
 nnoremap <Leader>t :NERDTreeToggle<CR>
-" search and change a word then change a given number occurences. eg: 5,q
+" search and change a word then change a given number occurences. eg: 5,q -It
+" does this by creating a macro
 nnoremap <Leader>q @='n. '<CR>
 
 function! NumberToggle()
