@@ -14,11 +14,10 @@ Plugin 'scrooloose/syntastic' "linter
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
-"Plugin 'easymotion/vim-easymotion'
-Plugin 'honza/vim-snippets'
 Plugin 'gregsexton/MatchTag' 
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'vim-scripts/auto_autoread.vim'
+Plugin 'fatih/vim-go'
+Plugin 'airblade/vim-gitgutter'
+"Plugin 'editorconfig/editorconfig-vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -39,11 +38,13 @@ set number
 set clipboard=unnamed
 set tabstop=2
 set shiftwidth=2
-set expandtab
+set noexpandtab
 set hlsearch
 set wmh=0
 set shortmess=at
 set cursorline
+"wrap with correct indentation and only break on whitespace
+set nolist wrap linebreak breakindent breakat&vim
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l> 
 " Show matching brackets.
@@ -71,6 +72,10 @@ nnoremap "*y yy
 vnoremap "*y yy
 nnoremap "*p p
 nnoremap "*p p
+"go down to next row when wrap is on
+nnoremap j gj
+nnoremap k gk
+
 " remap :update (save) to space button in normal mode
 noremap <space> :update<CR>
 " remap switching between panes from ctrl-ww to tab
@@ -98,6 +103,9 @@ vnoremap <Leader>p "0p
 " search and replace a word under cursor
 nnoremap <Leader>r :%s/<C-r><C-w>/<C-r><C-w>/gc<C-f>$F/i
 nnoremap <Leader>t :NERDTreeToggle<CR>
+" search and change a word then change a given number occurences. eg: 5,q -It
+" does this by creating a macro
+nnoremap <Leader>q @='n. '<CR>
 
 function! NumberToggle()
   if(&relativenumber == 1 && &number == 1)
@@ -117,7 +125,9 @@ nnoremap <Leader>c <Insert>console.log();<esc><left><Insert>
 "-----------------End of Leader declarations----------------------------"
 
 "give handlebars html syntax highlighting
-au BufReadPost *.hbs set syntax=html
+au BufReadPost *.hbs  set syntax=html
+au BufReadPost *.mustache set syntax=html
+au BufReadPost *.ejs set syntax=html
 au BufNewFile,BufRead *.xml,*.hbs set ft=html "let vim assume hbs filetype is html
 " By default, vim thinks .md is Modula-2.
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
@@ -169,12 +179,13 @@ ino " ""<left>
 ino ' ''<left>
 ino ( ()<left>
 ino [ []<left>
+ino { {}<left>
 "when entering a { it will close it, enter a new line and put the cursor
+"inoremap { {<CR>}<up><end><CR>
+
 "withcorrect indentation
 set autoindent
 set cindent
-inoremap { {<CR>}<up><end><CR>
-
 
 " Keep undo history across sessions by storing it in a file
 if has('persistent_undo')
