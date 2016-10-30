@@ -89,3 +89,6 @@ export NVM_DIR="/Users/Anita/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 if [[ $TERM == xterm ]]; then TERM=xterm-256color; fi
 fu\\tion tab() {
+
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=/Users/Anita/Documents/learning/go
