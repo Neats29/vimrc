@@ -11,6 +11,7 @@ Chrome extensions:
 - Live reload
 - Soundcloud
 
+Misc:
 
 - Flux
 - Spectacle
