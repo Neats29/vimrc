@@ -127,6 +127,32 @@ endfunc
 
 nnoremap <Leader>n :call NumberToggle()<CR>
 nnoremap <Leader>c <Insert>console.log();<esc><left><Insert>
+
+"swap two split view panes (eg:the left pane, will go on the right and the right
+"pane will go on the left. use leader mw on one pane and leader pw on the
+"other)
+function! MarkWindowSwap()
+    let g:markedWinNum = winnr()
+endfunction
+
+function! DoWindowSwap()
+    "Mark destination
+    let curNum = winnr()
+    let curBuf = bufnr( "%" )
+    exe g:markedWinNum . "wincmd w"
+    "Switch to source and shuffle dest->source
+    let markedBuf = bufnr( "%" )
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' curBuf
+    "Switch to dest and shuffle source->dest
+    exe curNum . "wincmd w"
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' markedBuf 
+endfunction
+
+nnoremap <silent> <leader>mw :call MarkWindowSwap()<CR>
+nnoremap <silent> <leader>pw :call DoWindowSwap()<CR>
+
 "-----------------End of Leader declarations----------------------------"
 
 "give handlebars html syntax highlighting
@@ -170,30 +196,6 @@ nnoremap <right> <C-w>>
 nnoremap <up> <C-w>+
 nnoremap <down> <C-w>-
 
-"swap two split view panes (eg:the left pane, will go on the right and the right
-"pane will go on the left. use leader mw on one pane and leader pw on the
-"other)
-function! MarkWindowSwap()
-    let g:markedWinNum = winnr()
-endfunction
-
-function! DoWindowSwap()
-    "Mark destination
-    let curNum = winnr()
-    let curBuf = bufnr( "%" )
-    exe g:markedWinNum . "wincmd w"
-    "Switch to source and shuffle dest->source
-    let markedBuf = bufnr( "%" )
-    "Hide and open so that we aren't prompted and keep history
-    exe 'hide buf' curBuf
-    "Switch to dest and shuffle source->dest
-    exe curNum . "wincmd w"
-    "Hide and open so that we aren't prompted and keep history
-    exe 'hide buf' markedBuf 
-endfunction
-
-nnoremap <silent> <leader>mw :call MarkWindowSwap()<CR>
-nnoremap <silent> <leader>pw :call DoWindowSwap()<CR>
 
 "------- ELM-------"
 let g:elm_format_autosave = 1
