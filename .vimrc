@@ -15,9 +15,13 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'gregsexton/MatchTag' 
-Plugin 'fatih/vim-go'
-Plugin 'airblade/vim-gitgutter'
-"Plugin 'editorconfig/editorconfig-vim'
+"Plugin 'fatih/vim-go'
+Plugin 'tpope/vim-fugitive'
+Plugin 'lambdatoast/elm.vim'
+Plugin 'avh4/elm-format'
+Plugin 'ElmCast/elm-vim'
+Plugin 'leafgarland/typescript-vim'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -43,6 +47,7 @@ set hlsearch
 set wmh=0
 set shortmess=at
 set cursorline
+"set statusline=%{fugitive#statusline()}
 "wrap with correct indentation and only break on whitespace
 set nolist wrap linebreak breakindent breakat&vim
 " <Ctrl-l> redraws the screen and removes any search highlighting.
@@ -165,6 +170,36 @@ nnoremap <right> <C-w>>
 nnoremap <up> <C-w>+
 nnoremap <down> <C-w>-
 
+"swap two split view panes (eg:the left pane, will go on the right and the right
+"pane will go on the left. use leader mw on one pane and leader pw on the
+"other)
+function! MarkWindowSwap()
+    let g:markedWinNum = winnr()
+endfunction
+
+function! DoWindowSwap()
+    "Mark destination
+    let curNum = winnr()
+    let curBuf = bufnr( "%" )
+    exe g:markedWinNum . "wincmd w"
+    "Switch to source and shuffle dest->source
+    let markedBuf = bufnr( "%" )
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' curBuf
+    "Switch to dest and shuffle source->dest
+    exe curNum . "wincmd w"
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' markedBuf 
+endfunction
+
+nnoremap <silent> <leader>mw :call MarkWindowSwap()<CR>
+nnoremap <silent> <leader>pw :call DoWindowSwap()<CR>
+
+"------- ELM-------"
+let g:elm_format_autosave = 1
+augroup format_elm " {
+  autocmd BufWritePost *.elm silent execute "!elm-format --yes %" | edit! | redraw!| setlocal ft=elm
+augroup END " }
 
 "let g:user_emmet_leader_key='<C-Z>'   "change Emment command to ctrl-z
 inoremap <S-Tab> <c-y>,
@@ -177,6 +212,7 @@ set wildignore+=*/node_modules/*  "ignore node_modules folder in fuzzy finder
 
 ino " ""<left>
 ino ' ''<left>
+ino ` ``<left>
 ino ( ()<left>
 ino [ []<left>
 ino { {}<left>
@@ -196,3 +232,4 @@ if has('persistent_undo')
     let &undodir = myUndoDir
     set undofile
 endif
+
