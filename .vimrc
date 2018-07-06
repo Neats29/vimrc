@@ -9,18 +9,27 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Keep Plugin commands between vundle#begin/end.
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/syntastic' "linter
+Plugin 'vim-syntastic/nerdcommenter'
+Plugin 'vim-syntastic/syntastic' "linter
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'gregsexton/MatchTag' 
 "Plugin 'fatih/vim-go'
 Plugin 'tpope/vim-fugitive'
+
+"Elm
 Plugin 'lambdatoast/elm.vim'
 Plugin 'avh4/elm-format'
 Plugin 'ElmCast/elm-vim'
+
+"typescript
 Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/tsuquyomi'
+Plugin 'Shougo/vimproc.vim'
+
+":Rg <string> to search
+Plugin 'jremmen/vim-ripgrep'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -153,6 +162,7 @@ endfunction
 nnoremap <silent> <leader>mw :call MarkWindowSwap()<CR>
 nnoremap <silent> <leader>pw :call DoWindowSwap()<CR>
 
+
 "-----------------End of Leader declarations----------------------------"
 
 "give handlebars html syntax highlighting
@@ -195,6 +205,11 @@ nnoremap <left> <C-w><
 nnoremap <right> <C-w>>
 nnoremap <up> <C-w>+
 nnoremap <down> <C-w>-
+
+":Rg <search for word>
+"ignore node modules folder
+"let g:rg_root_types = ['.git', '/node_modules']
+
 
 
 "------- ELM-------"

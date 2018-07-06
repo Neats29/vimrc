@@ -1,12 +1,14 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/Anita/.oh-my-zsh
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-#\\ptionally, if you set this to "random", it'll load a random theme each
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# time that oh-my-zsh is loaded.
-ZSH_THEME="pygmalion"
-#ZSH_THEME="random-emoji"
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/anita/.oh-my-zsh
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="spaceship"
+#ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -52,12 +54,11 @@ ZSH_THEME="pygmalion"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+source $ZSH/oh-my-zsh.sh
+
 # User configuration
 
-export PATH="/Users/Anita/.nvm/versions/node/v5.6.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -73,22 +74,53 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-#\\lias ohmyzsh="mate ~/.oh-my-zsh"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
-source ~/.git-flow-completion.zsh
+alias zshrc="vim ~/.zshrc"
+alias sozshrc="source ~/.zshrc"
+alias vimrc="vim ~/.vimrc"
+alias gst="git status"
+alias gl="git log --pretty=oneline"
+alias glola="git log --graph --decorate --pretty=oneline --abbrev-commit --all"
+alias gcm="git commit -m"
+alias ga="git add ."
+alias gco="git checkout"
+alias gconflict="git diff --name-only --diff-filter=U"
+alias gpod="git pull origin develop"
+alias gslog="log --pretty=format:"%h%x20%ad%x20%an%x09%x2d%x2d%x20%s" --date=short"
+alias gpd="git pull --log origin develop:develop"
+alias gpm="git pull --log origin master:master"
+alias tree="tree -I 'node_modules|lib'"
 
-export NVM_DIR="/Users/Anita/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-if [[ $TERM == xterm ]]; then TERM=xterm-256color; fi
-fu\\tion tab() {
+#
+fpath=(~/.zsh $fpath)
+source ~/.bashrc
+source ~/.bash_profile
 
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=/Users/Anita/Documents/learning/go
+
+export NVM_DIR="/Users/anita/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#https://github.com/zsh-users/zsh-syntax-highlighting
+#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+#hide the user name in the prompt
+prompt_context() {
+  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+    prompt_segment black default ""
+  fi
+}
+
+
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
