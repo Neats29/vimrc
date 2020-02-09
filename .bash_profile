@@ -1,2 +1,4 @@
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=/Users/Anita/Documents/learning/go
+export GOPATH=/Users/anita/go
+export PATH="$PATH:$GOPATH/bin:$HOME/bin"
+export GOPRIVATE=github.com/echo-health/*
+GIT_TERMINAL_PROMPT=1

@@ -1,27 +1,40 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:/usr/local/bin/code:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/anita/.oh-my-zsh
+export ZSH="/Users/anita/.oh-my-zsh"
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
-#ZSH_THEME="agnoster"
+ ZSH_THEME="robbyrussell"
+#ZSH_THEME="spaceship"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -42,13 +55,17 @@ ZSH_THEME="spaceship"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
@@ -73,9 +90,6 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -83,25 +97,43 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias zshrc="vim ~/.zshrc"
 alias sozshrc="source ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
+alias t="make test"
 alias gst="git status"
 alias gl="git log --pretty=oneline"
 alias glola="git log --graph --decorate --pretty=oneline --abbrev-commit --all"
 alias gcm="git commit -m"
+alias gc="git commit"
 alias ga="git add ."
 alias gco="git checkout"
 alias gconflict="git diff --name-only --diff-filter=U"
 alias gpod="git pull origin develop"
 alias gslog="log --pretty=format:"%h%x20%ad%x20%an%x09%x2d%x2d%x20%s" --date=short"
-alias gpd="git pull --log origin develop:develop"
-alias gpm="git pull --log origin master:master"
+alias gpd="git pull origin develop:develop"
+alias gpm="git pull origin master:master"
 alias tree="tree -I 'node_modules|lib'"
+alias gp="git push"
+alias gdiff="git diff"
+alias d="docker"
+alias dc="docker-compose"
+alias ds="docker stop"
+alias k="kubectl"
+
+function NUCLEAR_WAR() {
+  docker rm $(docker ps -a -q)
+  docker rmi $(docker images -q)
+}
+
+alias destroy=NUCLEAR_WAR()
+
+
 
 #
 fpath=(~/.zsh $fpath)
-source ~/.bashrc
+# source ~/.bashrc
 source ~/.bash_profile
 
 
@@ -121,6 +153,12 @@ prompt_context() {
 }
 
 
-export PATH="/usr/local/opt/openssl/bin:$PATH"
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/anita/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/anita/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/anita/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/anita/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+source <(kubectl completion zsh)  # setup autocomplete for kubectl 
+
